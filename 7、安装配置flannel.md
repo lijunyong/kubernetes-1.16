@@ -10,11 +10,8 @@
 flanneld
 mk-docker-opts.sh
 README.md
-```
 
-```
-`vi /usr/lib/systemd/system/flanneld.service`新建flanneld.service:
-```
+[root@localhost opt]# cat /usr/lib/systemd/system/flanneld.service
 [Unit]
 Description=Flanneld overlay address etcd agent
 After=network.target
