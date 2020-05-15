@@ -51,7 +51,7 @@ systemctl start flanneld
 systemctl status flanneld
 ```
 
-##etcd查询flanneld配置
+## etcd查询flanneld配置
 ```
 [root@localhost ~]# etcdctl --endpoints=http://172.20.0.113:2379 ls /kube-centos/network/
 /kube-centos/network/config
