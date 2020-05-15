@@ -51,3 +51,20 @@ systemctl start flanneld
 systemctl status flanneld
 ```
 
+##etcd查询flanneld配置
+```
+[root@localhost ~]# etcdctl --endpoints=http://172.20.0.113:2379 ls /kube-centos/network/
+/kube-centos/network/config
+/kube-centos/network/subnets
+[root@localhost ~]# etcdctl --endpoints=http://172.20.0.113:2379 get /kube-centos/network/config
+{"Network":"172.30.0.0/16","SubnetLen":24,"Backend":{"Type":"vxlan"}}
+[root@localhost ~]# etcdctl --endpoints=http://172.20.0.113:2379 ls /kube-centos/network/subnets
+/kube-centos/network/subnets/172.30.78.0-24
+/kube-centos/network/subnets/172.30.74.0-24
+/kube-centos/network/subnets/172.30.43.0-24
+[root@localhost ~]# etcdctl --endpoints=http://172.20.0.113:2379 get /kube-centos/network/subnets/172.30.74.0-24/
+{"PublicIP":"172.20.0.113","BackendType":"vxlan","BackendData":{"VtepMAC":"4a:6c:70:ab:d6:af"}}
+[root@localhost ~]# 
+
+```
+
