@@ -54,31 +54,7 @@ LimitNOFILE=65536
 WantedBy=multi-user.target
 
 ```
-+ 创建ectd配置文件
 
-```
-[root@localhost ~]# vi /etc/etcd/etcd.conf
-ETCD_NAME=etcd1
-ETCD_DATA_DIR="/var/lib/etcd/"
-ETCD_LISTEN_PEER_URLS="http://172.20.0.113:2380"
-ETCD_LISTEN_CLIENT_URLS="http://172.20.0.113:2379,http://172.20.0.113:4001"
-ETCD_INITIAL_ADVERTISE_PEER_URLS="http://172.20.0.113:2380"
-ETCD_INITIAL_CLUSTER="etcd1=http://172.20.0.113:2380,etcd2=http://172.20.0.114:2380,etcd3=http://172.20.0.115:2380"
-ETCD_INITIAL_CLUSTER_STATE="new"
-ETCD_INITIAL_CLUSTER_TOKEN="k8s-etcd-cluster"
-ETCD_ADVERTISE_CLIENT_URLS="http://172.20.0.113:2379,http://172.20.0.113:4001"
-
-#[security]
-#ETCD_CERT_FILE="/etc/kubernetes/ssl/kubernetes.pem"
-#ETCD_KEY_FILE="/etc/kubernetes/ssl/kubernetes-key.pem"
-#ETCD_TRUSTED_CA_FILE="/etc/kubernetes/ssl/ca.pem"
-#ETCD_CLIENT_CERT_AUTH="true"
-#ETCD_PEER_CERT_FILE="/etc/kubernetes/ssl/kubernetes.pem"
-#ETCD_PEER_KEY_FILE="/etc/kubernetes/ssl/kubernetes-key.pem"
-#ETCD_PEER_TRUSTED_CA_FILE="/etc/kubernetes/ssl/ca.pem"
-#ETCD_PEER_CLIENT_CERT_AUTH="true"
-
-```
 注意：配置文件只是其中一台机器的，部署到另一台机器时，记得更改ip地址
 
 ## 启动 etcd 服务
