@@ -32,6 +32,18 @@ Restart=on-failure
 WantedBy=multi-user.target
 RequiredBy=docker.service
 ```
+
+**在etcd中创建网络配置**
+
+执行下面的命令为docker分配IP地址段。
+
+```shell
+etcdctl --endpoints=http://172.20.0.113:2379,http://172.20.0.114:2379,http://172.20.0.115:2379 \
+  mkdir /kube-centos/network
+etcdctl --endpoints=http://172.20.0.113:2379,http://172.20.0.114:2379,http://172.20.0.115:2379 \
+  mk /kube-centos/network/config '{"Network":"172.30.0.0/16","SubnetLen":24,"Backend":{"Type":"vxlan"}}'
+```
+
 查看生成的/run/flannel/subnet.env：
 
 ```
