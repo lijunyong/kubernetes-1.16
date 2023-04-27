@@ -160,6 +160,27 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=peer
 ```
 cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=client etcd-csr.json | cfssljson -bare etcd-client
 ```
+```
+[root@localhost ssl]# ls -l
+total 60
+-rw-r--r--. 1 root root  819 Apr 27 09:30 ca-config.json
+-rw-r--r--. 1 root root 1001 Apr 26 14:31 ca.csr
+-rw-r--r--. 1 root root  266 Apr 26 14:31 ca-csr.json
+-rw-------. 1 root root 1675 Apr 26 14:31 ca-key.pem
+-rw-r--r--. 1 root root 1359 Apr 26 14:31 ca.pem
+-rw-r--r--. 1 root root 1054 Apr 27 10:24 etcd-client.csr
+-rw-------. 1 root root 1675 Apr 27 10:24 etcd-client-key.pem
+-rw-r--r--. 1 root root 1411 Apr 27 10:24 etcd-client.pem
+-rw-r--r--. 1 root root  349 Apr 27 10:18 etcd-csr.json
+-rw-r--r--. 1 root root 1054 Apr 27 10:21 etcd-peer.csr
+-rw-------. 1 root root 1675 Apr 27 10:21 etcd-peer-key.pem
+-rw-r--r--. 1 root root 1428 Apr 27 10:21 etcd-peer.pem
+-rw-r--r--. 1 root root 1054 Apr 27 10:19 etcd-server.csr
+-rw-------. 1 root root 1679 Apr 27 10:19 etcd-server-key.pem
+-rw-r--r--. 1 root root 1411 Apr 27 10:19 etcd-server.pem
+[root@localhost ssl]# 
+
+```
 
 ### 步骤五：部署etcd集群
 ```
