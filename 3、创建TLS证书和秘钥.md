@@ -89,6 +89,9 @@ EOF
 
 ``` json
 {
+  "CA": {
+     "expiry": "876000h"  #默认生成的CA证书有效期5年
+  },
   "CN": "kubernetes",
   "key": {
     "algo": "rsa",
