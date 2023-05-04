@@ -33,6 +33,9 @@ cfssl print-defaults csr > ca-csr.json
 ###### 修改内容ca-csr.json配置文件模板的内容
 ```json
 {
+    "CA": {
+        "expiry": "876000h"  #默认生成的CA证书有效期5年
+    },
     "CN": "kubernetes",  
     "key": {
         "algo": "rsa",
@@ -48,6 +51,7 @@ cfssl print-defaults csr > ca-csr.json
         }
     ]
 }
+
 ```
 > 参数说明  
 * CN 这个字段key的名称是只能取名是 CN, CN的key对应的value取值可以任意，可以是域名，也可以是任意内容
