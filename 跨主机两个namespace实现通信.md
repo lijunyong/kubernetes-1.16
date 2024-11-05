@@ -1,10 +1,10 @@
 
 ## 分别在两台主机上放开ipv4转发
-```aidl
+```
 root@lee-120:~# echo "1" > /proc/sys/net/ipv4/ip_forward
 ```
 ## 在第一台主机执行
-```aidl
+```
 root@lee-120:~# echo "1" > /proc/sys/net/ipv4/ip_forward
 root@lee-120:~# ip netns add ns1
 root@lee-120:~# ip link add veth1 type veth peer name veth2
@@ -39,7 +39,7 @@ PING 192.168.2.1 (192.168.2.1) 56(84) bytes of data.
 64 bytes from 192.168.2.1: icmp_seq=41 ttl=62 time=0.395 ms
 ```
 ## 在第二台主机执行
-```aidl
+```
 root@lee-121:~# echo "1" > /proc/sys/net/ipv4/ip_forward
 root@lee-121:~# ip netns add ns1
 root@lee-121:~# ip link add veth1 type veth peer name veth2
