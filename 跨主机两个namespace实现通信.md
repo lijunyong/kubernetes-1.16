@@ -220,7 +220,7 @@ PING 192.168.20.1 (192.168.20.1) 56(84) bytes of data.
  ip netns exec ns1 ping 10.10.2.4
 ```
 ## 第二台主机
-```aidl
+```
 root@lee-121:~# echo 1 > /proc/sys/net/ipv4/ip_forward
 root@lee-121:~# ip link add flannel.1 type vxlan id 42 dstport 4789 dev ens33
 root@lee-121:~# ip addr add 10.10.2.0/32 dev flannel.1
