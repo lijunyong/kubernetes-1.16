@@ -88,7 +88,7 @@ root@lee-120:~# bridge fdb
 ```
 
 ## 第二台主机
-```aidl
+```
 root@lee-121:~# ip link add vxlan0 type vxlan id 42 dstport 4789 remote 172.20.0.120 dev ens33
 root@lee-121:~# ip addr add 172.17.1.3/24 dev vxlan0
 root@lee-121:~# ip link set vxlan0 up
@@ -96,7 +96,7 @@ root@lee-121:~# ip link set vxlan0 up
 
 # 跨主机vxlan多播配置
 ## 第一台主机
-```aidl
+```
 root@lee-120:~# ip link add vxlan0 type vxlan id 42 dstport 4789 group 224.1.1.1 dev ens33
 root@lee-120:~# ip addr add 172.17.1.2/24 dev vxlan0
 root@lee-120:~# ip link set vxlan0 up
