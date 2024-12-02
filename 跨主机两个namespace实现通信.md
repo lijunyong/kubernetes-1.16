@@ -298,3 +298,23 @@ root@lee-121:~# ip netns exec ns1 route -n
 root@lee-121:~# ip netns exec ns1 route add default gw 10.10.2.1
 root@lee-121:~# 
 ```
+## 手工实现通过iptables实现访问namespace中的服务
+### 在第一台主机配置
+```
+root@lee-121:~# echo 1 > /proc/sys/net/ipv4/ip_forward
+root@lee-120:~# ip link add cni0 type bridge
+root@lee-120:~# ip addr add 10.10.1.1/24 dev cni0
+root@lee-120:~# ip link set cni0 up
+root@lee-120:~# ip link add veth0 type veth peer name veth1
+root@lee-120:~# ip netns add ns
+root@lee-120:~# ip link set veth1 netns ns
+root@lee-120:~# ip netns exec ns ip link set veth1 name eth0
+root@lee-120:~# ip netns exec ns ip addr add 10.10.1.3/24 dev eth0
+root@lee-120:~# ip netns exec ns ip link set eth0 up
+root@lee-120:~# ip link set veth0 master cni0
+root@lee-120:~# ip link set veth0 up
+root@lee-120:~# iptables -t nat -I PREROUTING -d 172.20.0.120 -p tcp --dport 8080 -j DNAT --to-destination 10.10.1.3:8080
+root@lee-120:~# iptables -t nat -A POSTROUTING -d 10.10.1.3/32 -j MASQUERADE
+root@lee-120:~# ip netns exec ns nc -l 8080
+
+```
